@@ -2,9 +2,11 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { Button, Textbox } from "../Components";
+import { useSelector } from "react-redux";
 
 const Login = () => {
-  const user = "";
+  const { user } = useSelector((state) => state.auth);
+  console.log("user: ", user);
   const {
     register,
     handleSubmit,
