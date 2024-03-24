@@ -5,6 +5,8 @@ import MobileSidebar from "./components/MobileSidebar";
 import Navbar from "./components/Navbar";
 import NotificationPanel from "./components/NotificationPanel";
 import UserAvatar from "./components/UserAvatar";
+import UserInfo from "./components/UserInfo";
+import Chart from "./components/Chart";
 
 export {
   Textbox,
@@ -14,4 +16,6 @@ export {
   Navbar,
   NotificationPanel,
   UserAvatar,
+  UserInfo,
+  Chart,
 };

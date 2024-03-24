@@ -74,7 +74,7 @@ const NotificationPanel = () => {
     <>
       <Popover className="relative">
         <Popover.Button className="inline-flex items-center outline-none">
-          <div className="w-8 h-8 flex items-center justify-center text-gray-800 relative">
+          <div className="w-8 h-8  flex items-center justify-center text-gray-800 relative">
             <IoIosNotificationsOutline className="text-2xl" />
             {data?.length > 0 && (
               <span className="absolute text-center top-0 right-1 text-sm text-white font-semibold w-4 h-4 rounded-full bg-red-600">
@@ -103,7 +103,7 @@ const NotificationPanel = () => {
                         key={item._id + index}
                         className="group relative flex gap-x-4 rounded-lg p-4 hover:bg-gray-50"
                       >
-                        <div className="mt-1 h-8 w-8 flex items-center justify-center rounded-lg bg-gray-200 group-hover:bg-white">
+                        <div className="mt-1 p-1.5 h-8 w-8 flex items-center justify-center rounded-full bg-gray-200 group-hover:bg-white">
                           {ICONS[item.notiType]}
                         </div>
 
