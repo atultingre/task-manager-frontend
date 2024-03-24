@@ -7,6 +7,9 @@ import NotificationPanel from "./components/NotificationPanel";
 import UserAvatar from "./components/UserAvatar";
 import UserInfo from "./components/UserInfo";
 import Chart from "./components/Chart";
+import TaskTable from "./components/TaskTable";
+import UserTable from "./components/UserTable";
+import Card from "./components/Card";
 
 export {
   Textbox,
@@ -18,4 +21,7 @@ export {
   UserAvatar,
   UserInfo,
   Chart,
+  TaskTable,
+  UserTable,
+  Card,
 };
