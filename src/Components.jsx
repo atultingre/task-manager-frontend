@@ -23,6 +23,7 @@ import TaskDialog from "./components/task/TaskDialog";
 import ConfirmatioDialog from "./components/ConfirmatioDialog";
 import ModalWrapper from "./components/ModalWrapper";
 import SelectList from "./components/SelectList";
+import AddUser from "./components/AddUser";
 import UserList from "./components/task/UserList";
 
 export {
@@ -52,4 +53,5 @@ export {
   ModalWrapper,
   SelectList,
   UserList,
+  AddUser,
 };
