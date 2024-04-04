@@ -2,7 +2,6 @@ import { Listbox, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useState } from "react";
 import { BsChevronExpand } from "react-icons/bs";
 import { summary } from "../../assets/data";
-import clsx from "clsx";
 import { getInitials } from "../../utils";
 import { MdCheck } from "react-icons/md";
 
@@ -14,6 +13,7 @@ const UserList = ({ setTeam, team }) => {
     setSelectedUsers(el);
     setTeam(el?.map((u) => u._id));
   };
+
   useEffect(() => {
     if (team?.length < 1) {
       data && setSelectedUsers([data[0]]);
@@ -55,7 +55,7 @@ const UserList = ({ setTeam, team }) => {
                 <Listbox.Option
                   key={index}
                   className={({ active }) =>
-                    `relative cursor-default select-none py-2 pl-10 pr-4. ${
+                    `relative cursor-default select-none py-2 pl-10 pr-4 ${
                       active ? "bg-amber-100 text-amber-900" : "text-gray-900"
                     } `
                   }
@@ -64,10 +64,9 @@ const UserList = ({ setTeam, team }) => {
                   {({ selected }) => (
                     <>
                       <div
-                        className={clsx(
-                          "flex items-center gap-2 truncate",
+                        className={`flex items-center gap-2 truncate ${
                           selected ? "font-medium" : "font-normal"
-                        )}
+                        }`}
                       >
                         <div className="w-6 h-6 rounded-full text-white flex items-center justify-center bg-violet-600">
                           <span className="text-center text-[10px]">
