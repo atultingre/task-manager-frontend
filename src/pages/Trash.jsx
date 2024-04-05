@@ -10,7 +10,8 @@ import {
 import { tasks } from "../assets/data";
 
 import { PRIOTITYSTYELS, TASK_TYPE } from "../utils";
-import { Button, Title } from "../Components";
+import { AddUser, Button, Title } from "../Components";
+import ConfirmatioDialog from "../components/Dialogs";
 // import ConfirmatioDialog from "../components/Dialogs";
 
 const ICONS = {
@@ -137,17 +138,17 @@ const Trash = () => {
         </div>
       </div>
 
-      {/* <AddUser open={open} setOpen={setOpen} /> */}
+      <AddUser open={open} setOpen={setOpen} />
 
-      {/* <ConfirmatioDialog
+      <ConfirmatioDialog
         open={openDialog}
         setOpen={setOpenDialog}
         msg={msg}
         setMsg={setMsg}
         type={type}
         setType={setType}
-        onClick={() => deleteRestoreHandler()}
-      /> */}
+        // onClick={() => deleteRestoreHandler()}
+      />
     </>
   );
 };

@@ -20,7 +20,6 @@ import Table from "./components/task/Table";
 import TaskCard from "./components/TaskCard";
 import AddSubTask from "./components/task/AddSubTask";
 import TaskDialog from "./components/task/TaskDialog";
-import ConfirmatioDialog from "./components/ConfirmatioDialog";
 import ModalWrapper from "./components/ModalWrapper";
 import SelectList from "./components/SelectList";
 import AddUser from "./components/AddUser";
@@ -49,7 +48,6 @@ export {
   TaskCard,
   AddSubTask,
   TaskDialog,
-  ConfirmatioDialog,
   ModalWrapper,
   SelectList,
   UserList,

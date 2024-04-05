@@ -34,15 +34,17 @@ const TaskCard = ({ task }) => {
             <span className="uppercase">{task?.priority} Priority</span>
           </div>
 
-          {user?.isAdmin && <TaskDialog task={task} />}
+          {!user?.isAdmin && <TaskDialog task={task} />}
+        </div>
+
+        <div className="flex items-center justify-between gap-2 py-1">
+          <div className="flex items-center gap-2">
+            <div className={`w-3 h-3 rounded-full ${TASK_TYPE[task.stage]}`} />
+            <h4 className="line-clamp-1 text-sm text-black">{task?.title}</h4>
+          </div>
           <span className="text-xs text-gray-600">
             {formatDate(new Date(task?.date))}
           </span>
-        </div>
-
-        <div className="flex items-center gap-2 py-1">
-          <div className={`w-3 h-3 rounded-full ${TASK_TYPE[task.stage]}`} />
-          <h4 className="line-clamp-1 text-sm text-black">{task?.title}</h4>
         </div>
 
         <div className="w-full border-t border-gray-200 my-1" />

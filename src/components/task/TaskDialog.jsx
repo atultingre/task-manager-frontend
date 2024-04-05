@@ -6,7 +6,8 @@ import { HiDuplicate } from "react-icons/hi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdAdd, MdOutlineEdit } from "react-icons/md";
 import { AiTwotoneFolderOpen } from "react-icons/ai";
-import { AddSubTask, AddTask, ConfirmatioDialog } from "../../Components";
+import { AddSubTask, AddTask } from "../../Components";
+import ConfirmatioDialog from "../Dialogs";
 
 const TaskDialog = ({ task }) => {
   const [open, setOpen] = useState(false);

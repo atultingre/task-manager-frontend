@@ -12,7 +12,8 @@ import { BGS, PRIOTITYSTYELS, TASK_TYPE, formatDate } from "../../utils";
 import clsx from "clsx";
 import { FaList } from "react-icons/fa";
 import { AiTwotoneDelete } from "react-icons/ai";
-import { Button, UserInfo, ConfirmatioDialog } from "../../Components";
+import { Button, UserInfo } from "../../Components";
+import ConfirmatioDialog from "../Dialogs";
 
 const ICONS = {
   high: <MdKeyboardDoubleArrowUp />,
@@ -103,16 +104,16 @@ const Table = ({ tasks }) => {
         </div>
       </td>
 
-      <td className="py-1 flex gap-2 md:gap-4 justify-end">
+      <td className="py-2 flex gap-2 md:gap-4 justify-end">
         <Button
           className="text-blue-600 hover:text-blue-500 sm:px-0 text-sm md:text-base"
-          label={<MdEdit />}
+          label="Edit"
           type="button"
         />
 
         <Button
           className="text-red-700 hover:text-red-500 sm:px-0 text-sm md:text-base"
-          label={<AiTwotoneDelete />}
+          label="Delete"
           type="button"
           onClick={() => deleteClicks(task._id)}
         />
@@ -135,11 +136,11 @@ const Table = ({ tasks }) => {
       </div>
 
       {/* TODO */}
-      {/* <ConfirmatioDialog
+      <ConfirmatioDialog
         open={openDialog}
         setOpen={setOpenDialog}
         onClick={deleteHandler}
-      /> */}
+      />
     </>
   );
 };
