@@ -7,6 +7,7 @@ import { getInitials } from "../utils";
 import clsx from "clsx";
 // import ConfirmatioDialog, { UserAction } from "../components/Dialogs";
 import { AddUser } from "../Components";
+import ConfirmatioDialog, { UserAction } from "../components/Dialogs";
 
 const Users = () => {
   const [openDialog, setOpenDialog] = useState(false);
@@ -119,17 +120,17 @@ const Users = () => {
         key={new Date().getTime().toString()}
       />
 
-      {/* <ConfirmatioDialog
+      <ConfirmatioDialog
         open={openDialog}
         setOpen={setOpenDialog}
         onClick={deleteHandler}
-      /> */}
+      />
 
-      {/* <UserAction
+      <UserAction
         open={openAction}
         setOpen={setOpenAction}
         onClick={userActionHandler}
-      /> */}
+      />
     </>
   );
 };
