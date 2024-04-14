@@ -1,8 +1,9 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { MobileSidebar, Navbar, Sidebar } from "../Components";
+import { useSelector } from "react-redux";
 
 const Layout = () => {
-  const user = true;
+  const { user } = useSelector((state) => state.auth);
 
   const location = useLocation();
 

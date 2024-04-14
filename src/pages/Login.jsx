@@ -1,26 +1,37 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { Button, Textbox } from "../Components";
-import { useSelector } from "react-redux";
+import { Button, Loader, Textbox } from "../Components";
+import { useSelector, useDispatch } from "react-redux";
+import { useLoginMutation } from "../redux/slices/api/authApiSlice";
+import { toast } from "sonner";
+import { setCredentials } from "../redux/slices/authSlice";
 
 const Login = () => {
-  const { user } = useSelector((state) => state.auth);
-  console.log("user: ", user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const navigate = useNavigate();
+  const [login, { isLoading }] = useLoginMutation();
+  const { user } = useSelector((state) => state?.auth);
 
   const submitHandler = async (data) => {
-    console.log("data: ", data);
+    try {
+      const result = await login(data).unwrap();
+      dispatch(setCredentials(result));
+      navigate("/");
+    } catch (error) {
+      toast.error(error?.data?.message || error.message);
+    }
   };
 
   useEffect(() => {
     user && navigate("/dashboard");
   }, [user]);
+
   return (
     <div className="w-full min-h-screen flex items-center justify-center flex-col lg:flex-row bg-[#f3f4f6]">
       <div className="w-full md:w-auto flex gap-0 md:gap-40 flex-col md:flex-row items-center justify-center">
@@ -78,12 +89,16 @@ const Login = () => {
             <span className="text-sm text-gray-500 hover:text-blue-600 cursor-pointer hover:underline">
               Forgot password?
             </span>
-            <Button
-              type="submit"
-              label="Submit"
-              className="w-full h10
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <Button
+                type="submit"
+                label="Submit"
+                className="w-full h10
              bg-blue-700 textwhite cursor-pointer text-white"
-            />
+              />
+            )}
           </form>
         </div>
       </div>
