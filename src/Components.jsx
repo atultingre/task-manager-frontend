@@ -25,6 +25,7 @@ import SelectList from "./components/SelectList";
 import AddUser from "./components/AddUser";
 import UserList from "./components/task/UserList";
 import ViewNotification from "./components/ViewNotification";
+import ChangePassword from "./components/ChangePassword";
 
 export {
   Textbox,
@@ -54,4 +55,5 @@ export {
   UserList,
   AddUser,
   ViewNotification,
+  ChangePassword,
 };

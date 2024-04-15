@@ -27,10 +27,10 @@ const AddUser = ({ open, setOpen, userData }) => {
     try {
       if (userData) {
         const result = await updateUser(data).unwrap();
-        toast.success(result?.message);
+        toast.success("Profie updated successfully");
 
         if (userData?._id === user._id) {
-          dispatch(setCredentials({...result.user}));
+          dispatch(setCredentials({ ...result.user }));
         }
       } else {
         const result = await addNewUser({
