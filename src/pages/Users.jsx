@@ -1,10 +1,15 @@
 import { useState } from "react";
 import { IoMdAdd } from "react-icons/io";
-import { summary } from "../assets/data";
+// import { summary } from "../assets/data";
+import { toast } from "sonner";
 import { getInitials } from "../utils";
 import ConfirmatioDialog, { UserAction } from "../components/Dialogs";
 import { AddUser, Button, Title } from "../Components";
-import { useGetTeamListQuery } from "../redux/slices/api/userApiSlice";
+import {
+  useDeleteUserMutation,
+  useGetTeamListQuery,
+  useUserActionMutation,
+} from "../redux/slices/api/userApiSlice";
 
 const Users = () => {
   const [openDialog, setOpenDialog] = useState(false);
@@ -12,15 +17,63 @@ const Users = () => {
   const [openAction, setOpenAction] = useState(false);
   const [selected, setSelected] = useState(null);
 
-  const { data, isLoading, error } = useGetTeamListQuery();
+  const { data, isLoading, refetch } = useGetTeamListQuery();
+  const [deleteUser] = useDeleteUserMutation();
+  const [userAction] = useUserActionMutation();
 
-  console.log("users data: ", data, error);
+  console.log("users data: ", data);
 
-  const userActionHandler = () => {};
-  const deleteHandler = () => {};
+  const userActionHandler = async () => {
+    try {
+      const result = await userAction({
+        isActive: !selected?.isActive,
+        id: selected?._id,
+      });
+
+      refetch();
+
+      toast.success(result.data.message);
+
+      setSelected(null);
+
+      setTimeout(() => {
+        setOpenAction(false);
+      }, 500);
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.data?.message || err.error);
+    }
+  };
+
+  const deleteHandler = async () => {
+    try {
+      const result = await deleteUser(selected?._id);
+      console.log("selected: ", selected?._id);
+      console.log("result: ", result);
+
+      refetch();
+
+      toast.success(result?.data?.message);
+
+      setSelected(null);
+
+      setTimeout(() => {
+        setOpenDialog(false);
+      }, 500);
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.data?.message || err.error);
+    }
+  };
+
+  const userStatusClick = (el) => {
+    console.log("el: ", el);
+    setSelected(el);
+    setOpenAction(true);
+  };
 
   const deleteClick = (id) => {
-    setSelected(id);
+    setSelected({ _id: id });
     setOpenDialog(true);
   };
 
@@ -60,9 +113,9 @@ const Users = () => {
 
       <td>
         <button
-          // onClick={() => userStatusClick(user)}
+          onClick={() => userStatusClick(user)}
           className={`w-fit px-4 py-1 rounded-full
-            ${user?.isActive} ? "bg-blue-200" : "bg-yellow-100"
+            ${user?.isActive ? "bg-blue-200" : "bg-yellow-100"} 
           `}
         >
           {user?.isActive ? "Active" : "Disabled"}
