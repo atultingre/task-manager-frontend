@@ -24,6 +24,7 @@ import ModalWrapper from "./components/ModalWrapper";
 import SelectList from "./components/SelectList";
 import AddUser from "./components/AddUser";
 import UserList from "./components/task/UserList";
+import ViewNotification from "./components/ViewNotification";
 
 export {
   Textbox,
@@ -52,4 +53,5 @@ export {
   SelectList,
   UserList,
   AddUser,
+  ViewNotification,
 };
