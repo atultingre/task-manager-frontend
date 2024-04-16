@@ -34,7 +34,7 @@ const TaskCard = ({ task }) => {
             <span className="uppercase">{task?.priority} Priority</span>
           </div>
 
-          {!user?.isAdmin && <TaskDialog task={task} />}
+          {user?.isAdmin && <TaskDialog task={task} />}
         </div>
 
         <div className="flex items-center justify-between gap-2 py-1">

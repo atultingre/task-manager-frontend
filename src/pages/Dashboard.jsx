@@ -8,7 +8,7 @@ import { useGetDashboardStatsQuery } from "../redux/slices/api/taskApiSlice";
 
 const Dashboard = () => {
   const { data, isLoading } = useGetDashboardStatsQuery();
-  console.log('data: ', data);
+  console.log("data: ", data);
 
   if (isLoading)
     return (
@@ -16,7 +16,7 @@ const Dashboard = () => {
         <Loader />
       </div>
     );
-  const totals = data?.tasks;
+  const totals = data?.task;
 
   const stats = [
     {
@@ -30,21 +30,21 @@ const Dashboard = () => {
     {
       _id: "2",
       label: "COMPLTED TASK",
-      total: totals["completed"] || 0,
+      total: totals?.["completed"] || 0,
       icon: <MdAdminPanelSettings />,
       bg: "bg-[#0f766e]",
     },
     {
       _id: "3",
       label: "TASK IN PROGRESS ",
-      total: totals["in progress"] || 0,
+      total: totals?.["in progress"] || 0,
       icon: <LuClipboardEdit />,
       bg: "bg-[#f59e0b]",
     },
     {
       _id: "4",
       label: "TODOS",
-      total: totals["todo"],
+      total: totals?.["todo"] || 0,
       icon: <FaArrowsToDot />,
       bg: "bg-[#be185d]" || 0,
     },
@@ -62,7 +62,7 @@ const Dashboard = () => {
         <h4 className="text-xl text-gray-600 font-semibold">
           Chart by Priority
         </h4>
-        <Chart data={data?.graphData}/>
+        <Chart data={data?.graphData} />
       </div>
 
       <div className="w-full flex flex-col md:flex-row gap-4 2xl:gap-10 ">
