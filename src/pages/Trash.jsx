@@ -10,8 +10,12 @@ import {
 import { tasks } from "../assets/data";
 
 import { PRIOTITYSTYELS, TASK_TYPE } from "../utils";
-import { AddUser, Button, Title } from "../Components";
+import { AddUser, Button, Loader, Title, toast } from "../Components";
 import ConfirmatioDialog from "../components/Dialogs";
+import {
+  useDeleteResoreTaskMutation,
+  useGetAllTaskQuery,
+} from "../redux/slices/api/taskApiSlice";
 // import ConfirmatioDialog from "../components/Dialogs";
 
 const ICONS = {
@@ -26,6 +30,58 @@ const Trash = () => {
   const [msg, setMsg] = useState(null);
   const [type, setType] = useState("delete");
   const [selected, setSelected] = useState("");
+  const [deleteResoreTask] = useDeleteResoreTaskMutation();
+  const { data, isLoading, refetch } = useGetAllTaskQuery({
+    strQuery: "",
+    isTrashed: "true",
+    search: "",
+  });
+
+  const deleteRestoreHandler = async () => {
+    try {
+      let result;
+      switch (type) {
+        case "delete":
+          result = await deleteResoreTask({
+            id: selected,
+            actionType: "delete",
+          }).unwrap();
+          break;
+        case "deleteAll":
+          result = await deleteResoreTask({
+            id: selected,
+            actionType: "deleteAll",
+          }).unwrap();
+
+          break;
+        case "restore":
+          result = await deleteResoreTask({
+            id: selected,
+            actionType: "restore",
+          }).unwrap();
+
+          break;
+
+        case "restoreAll":
+          result = await deleteResoreTask({
+            id: selected,
+            actionType: "restoreAll",
+          }).unwrap();
+
+          break;
+      }
+      toast.success(result?.message);
+
+      setTimeout(() => {
+        setOpenDialog(false);
+
+        refetch();
+      });
+    } catch (err) {
+      console.log(err);
+      toast.error(err?.data?.message || err.error);
+    }
+  };
 
   const deleteAllClick = () => {
     setType("deleteAll");
@@ -51,6 +107,13 @@ const Trash = () => {
     setMsg("Do you want to restore the selected item?");
     setOpenDialog(true);
   };
+
+  if (isLoading)
+    return (
+      <div className="py-10">
+        <Loader />
+      </div>
+    );
 
   const TableHeader = () => (
     <thead className="border-b border-gray-300">
@@ -129,7 +192,7 @@ const Trash = () => {
             <table className="w-full mb-5">
               <TableHeader />
               <tbody>
-                {tasks?.map((tk, id) => (
+                {data?.tasks?.map((tk, id) => (
                   <TableRow key={id} item={tk} />
                 ))}
               </tbody>
@@ -147,7 +210,7 @@ const Trash = () => {
         setMsg={setMsg}
         type={type}
         setType={setType}
-        // onClick={() => deleteRestoreHandler()}
+        onClick={() => deleteRestoreHandler()}
       />
     </>
   );

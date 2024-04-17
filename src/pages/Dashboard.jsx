@@ -8,7 +8,6 @@ import { useGetDashboardStatsQuery } from "../redux/slices/api/taskApiSlice";
 
 const Dashboard = () => {
   const { data, isLoading } = useGetDashboardStatsQuery();
-  console.log("data: ", data);
 
   if (isLoading)
     return (
@@ -16,6 +15,7 @@ const Dashboard = () => {
         <Loader />
       </div>
     );
+
   const totals = data?.task;
 
   const stats = [

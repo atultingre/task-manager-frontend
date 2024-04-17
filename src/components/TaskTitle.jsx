@@ -1,7 +1,6 @@
 import { IoMdAdd } from "react-icons/io";
 
 const TaskTitle = ({ label, className }) => {
-  console.log("className: ", className);
   return (
     <div className="w-full h-10 md:h-12 px-2 md:px-4 rounded bg-white flex items-center justify-between">
       <div className="flex gap-2 items-center">

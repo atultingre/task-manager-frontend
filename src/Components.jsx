@@ -26,6 +26,7 @@ import AddUser from "./components/AddUser";
 import UserList from "./components/task/UserList";
 import ViewNotification from "./components/ViewNotification";
 import ChangePassword from "./components/ChangePassword";
+import {toast} from "sonner";
 
 export {
   Textbox,
@@ -56,4 +57,5 @@ export {
   AddUser,
   ViewNotification,
   ChangePassword,
+  toast,
 };

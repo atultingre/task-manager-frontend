@@ -17,6 +17,10 @@ import { toast } from "sonner";
 import { tasks } from "../assets/data";
 import { PRIOTITYSTYELS, TASK_TYPE, getInitials } from "../utils";
 import { Button, Loader, Tabs } from "../Components";
+import {
+  useGetSingleTaskQuery,
+  usePostTaskActivityMutation,
+} from "../redux/slices/api/taskApiSlice";
 
 const assets = [
   "https://images.pexels.com/photos/2418664/pexels-photo-2418664.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
@@ -86,9 +90,16 @@ const act_types = [
 
 const TaskDetails = () => {
   const { id } = useParams();
-
+  const { data, isLoading, refetch } = useGetSingleTaskQuery(id);
   const [selected, setSelected] = useState(0);
-  const task = tasks[2];
+  const task = data?.task;
+
+  if (isLoading)
+    return (
+      <div className="py-10">
+        <Loader />
+      </div>
+    );
 
   return (
     <div className="w-full flex flex-col gap-3 mb-4 overflow-y-hidden">
@@ -215,7 +226,7 @@ const TaskDetails = () => {
           </>
         ) : (
           <>
-            <Activities activity={task?.activities} id={id} />
+            <Activities activity={data?.task?.activities} id={id} refetch={refetch} />
           </>
         )}
       </Tabs>
@@ -223,12 +234,32 @@ const TaskDetails = () => {
   );
 };
 
-const Activities = ({ activity, id }) => {
+const Activities = ({ activity, id, refetch }) => {
   const [selected, setSelected] = useState(act_types[0]);
   const [text, setText] = useState("");
-  const isLoading = false;
+  // const isLoading = false;
 
-  const handleSubmit = async () => {};
+  const [postActivity, { isLoading }] = usePostTaskActivityMutation();
+
+  const handleSubmit = async () => {
+    try {
+      const activityData = {
+        type: selected?.toLocaleLowerCase(),
+        activity: text,
+      };
+      const result = await postActivity({
+        data: activityData,
+        id,
+      }).unwrap();
+
+      setText("");
+      toast.success(result?.message);
+      refetch();
+    } catch (err) {
+      console.log(err);
+      toast(err?.data?.message || err.error);
+    }
+  };
 
   const Card = ({ item }) => {
     return (
@@ -291,7 +322,7 @@ const Activities = ({ activity, id }) => {
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Type ......"
-             className="bg-white w-full mt-10 border border-gray-300 outline-none p-4 rounded-md focus:ring-2 ring-blue-500"
+            className="bg-white w-full mt-10 border border-gray-300 outline-none p-4 rounded-md focus:ring-2 ring-blue-500"
           ></textarea>
           {isLoading ? (
             <Loader />
