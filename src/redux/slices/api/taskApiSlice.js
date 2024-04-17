@@ -9,6 +9,9 @@ export const taskApiSlice = apiSlice.injectEndpoints({
         url: `${TASK_URL}/dashboard`,
         method: "GET",
         credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
       }),
     }),
 
@@ -17,6 +20,9 @@ export const taskApiSlice = apiSlice.injectEndpoints({
         url: `${TASK_URL}?stage=${strQuery}&isTrashed=${isTrashed}&search=${search}`,
         method: "GET",
         credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
       }),
     }),
 
@@ -26,6 +32,9 @@ export const taskApiSlice = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
         credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
       }),
     }),
 
@@ -35,6 +44,9 @@ export const taskApiSlice = apiSlice.injectEndpoints({
         method: "POST",
         body: {},
         credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
       }),
     }),
 
@@ -44,6 +56,9 @@ export const taskApiSlice = apiSlice.injectEndpoints({
         method: "PUT",
         body: data,
         credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
       }),
     }),
 
@@ -52,6 +67,9 @@ export const taskApiSlice = apiSlice.injectEndpoints({
         url: `${TASK_URL}/${id}`,
         method: "PUT",
         credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
       }),
     }),
 
@@ -61,6 +79,9 @@ export const taskApiSlice = apiSlice.injectEndpoints({
         method: "PUT",
         body: data,
         credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
       }),
     }),
 
@@ -69,6 +90,9 @@ export const taskApiSlice = apiSlice.injectEndpoints({
         url: `${TASK_URL}/${id}`,
         method: "GET",
         credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
       }),
     }),
 
@@ -78,6 +102,9 @@ export const taskApiSlice = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
         credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
       }),
     }),
     deleteResoreTask: builder.mutation({
@@ -85,6 +112,9 @@ export const taskApiSlice = apiSlice.injectEndpoints({
         url: `${TASK_URL}/delete-restore/${id}?actionType=${actionType}`,
         method: "DELETE",
         credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
       }),
     }),
   }),

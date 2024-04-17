@@ -10,6 +10,9 @@ export const userApiSlice = apiSlice.injectEndpoints({
         method: "PUT",
         body: data,
         credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
       }),
     }),
 
@@ -18,6 +21,9 @@ export const userApiSlice = apiSlice.injectEndpoints({
         url: `${USER_URL}/get-team`,
         method: "GET",
         credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
       }),
     }),
 
@@ -26,6 +32,9 @@ export const userApiSlice = apiSlice.injectEndpoints({
         url: `${USER_URL}/${id}`,
         method: "DELETE",
         credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
       }),
     }),
 
@@ -35,6 +44,9 @@ export const userApiSlice = apiSlice.injectEndpoints({
         method: "PUT",
         body: data,
         credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
       }),
     }),
 
@@ -43,6 +55,9 @@ export const userApiSlice = apiSlice.injectEndpoints({
         url: `${USER_URL}/notifications`,
         method: "GET",
         credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
       }),
     }),
 
@@ -52,6 +67,9 @@ export const userApiSlice = apiSlice.injectEndpoints({
         method: "PUT",
         body: data,
         credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
       }),
     }),
 
@@ -61,6 +79,9 @@ export const userApiSlice = apiSlice.injectEndpoints({
         method: "PUT",
         body: data,
         credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
       }),
     }),
   }),
