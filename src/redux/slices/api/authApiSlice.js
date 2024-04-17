@@ -10,9 +10,6 @@ export const authApiSlie = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
         credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
       }),
     }),
 
@@ -22,9 +19,6 @@ export const authApiSlie = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
         credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
       }),
     }),
 
@@ -33,9 +27,6 @@ export const authApiSlie = apiSlice.injectEndpoints({
         url: `${AUTH_URL}/logout`,
         method: "POST",
         credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
       }),
     }),
   }),
